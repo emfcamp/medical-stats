@@ -1,0 +1,22 @@
+{
+    "name": "emfcamp/eprf-stats",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Hayward",
+            "email": "jhayward1980@gmail.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^1.33",
+        "flatbase/flatbase": "^0.4.1",
+        "symfony/console": "^4.1",
+        "symfony/var-dumper": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "EMFCamp\\Medical\\": "src/"
+        }
+    }
+}
