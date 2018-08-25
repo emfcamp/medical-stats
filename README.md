@@ -29,7 +29,7 @@ EMF20XX
 
 ### Getting the form data
 
-When pulling the forms using `get-forms.sh` (not in this repo), pull the forms from each Nook into their corresponding folder.  Get forms deposits the encrypted PRF along with a decrypted version of it.
+When pulling the forms using `get-forms.sh` (not in this repo), pull the forms from each Nook into their corresponding folder.  `get-forms.sh` deposits the encrypted PRF along with a decrypted version of it.
 
 Once all the Nooks have been pulled, run the `process-pull.php` script contained in this repo:
 
@@ -37,4 +37,4 @@ Once all the Nooks have been pulled, run the `process-pull.php` script contained
 php process-pull.php --input /path/to/EMF20XX
 ```
 
-This will move all the encrtypted forms into `combined`, and create a flatfile database in `stats-data` of PRF objects for later use. These should not contain any personal data, but may need further anonimisation at the next step if the First Aider has included names in the free-text fields.
+This will move all the encrypted forms into `combined`, and create a flatfile database in `stats-data` of PRF objects for later use. These should not contain any personal data, but may need further anonimisation at the next step if the First Aider has included names in the free-text fields.
