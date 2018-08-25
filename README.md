@@ -14,6 +14,7 @@ Eventually, it will also:
 
 Each event will have the following folder structure
 
+```
 EMF20XX
 |
 ├── combined
@@ -24,6 +25,7 @@ EMF20XX
 |   ├── ...
 |   ├── nookN
 ├── stats-data
+```
 
 ### Getting the form data
 
