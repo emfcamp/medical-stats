@@ -20,7 +20,8 @@ use Flatbase\Storage\Filesystem;
 require 'vendor/autoload.php';
 
 $options = getopt("", [
-    "input:"
+    "input:",
+    "debug"
     ]);
 
 if (!isset($options['input'])) {
@@ -35,6 +36,11 @@ if (!isset($options['input'])) {
     if ($inputPath[strlen($inputPath) - 1] !== "/") {
         $inputPath .= "/";
     }
+}
+
+$debug = false;
+if (isset($options['debug'])) {
+    $debug = true;
 }
 
 $prfList = checkForPrfs($inputPath . 'nooks/');
@@ -61,23 +67,49 @@ foreach ($prfList as $prfPaths) {
         $count++;
         $newFile = $newPath . $encrypted->getBasename(".prf") . "(" . $count .").prf";
     }
-    rename($encrypted->getPathname(), $newFile);
+
+    if ($debug) {
+        echo("Not moving: " . $encrypted->getPathname() . " to " . $newFile . "\n");
+    } else {
+        rename($encrypted->getPathname(), $newFile);
+    }
     
     // build PRF object from decrypted
-    $prf = new ePrf($decrypted->getPathname());
+    $prf = new ePrf();
+    $contents = file_get_contents($decrypted->getPathname());
+    // get rid of newlines
+    $contents = str_replace("\n", '', $contents);
+    // get rid of embedded JPEG
+    $xml = preg_replace('/\*\*\*JPEG_SIGNATURE\*\*\*.*/', '', $contents);
+
+    if ($prf->createFromXML($xml) === false) {
+        echo("There was an issue with a PRF and it was skipped:\n" . $decrypted->getPathname() . "\n");
+        continue;
+    }
+
+
+    if ($debug) {
+        var_dump($prf);
+    }
     
     // save PRF object in stats database
-    $flatbase->insert()->in('prfs')->set([
-        'date'  => $prf->getDateString(),
-        'year'  => $prf->getYear(),
-        'month' => $prf->getMonth(),
-        'day'   => $prf->getDay(),
-        'hour'  => $prf->getHour(),
-        'prf'   => $prf
-    ])->execute();
+    if (!$debug) {
+        $flatbase->insert()->in('prfs')->set([
+            'date'  => $prf->getDateString(),
+            'year'  => $prf->getYear(),
+            'month' => $prf->getMonth(),
+            'day'   => $prf->getDay(),
+            'hour'  => $prf->getHour(),
+            'prf'   => $prf
+        ])->execute();
+    }
      
     // remove decrypted
-    unlink($decrypted->getPathname());
+    if ($debug) {
+        echo("Not removing: " . $decrypted->getPathname() . "\n");
+    } else {
+        unlink($decrypted->getPathname());
+    }
 }
 
 echo "All PRFs have been processed";

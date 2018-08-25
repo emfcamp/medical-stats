@@ -11,6 +11,8 @@ use EMFCamp\Medical\ePrfTreatment;
 
 class ePrf
 {
+    private $id;
+
     private $date;
     private $year;
     private $month;
@@ -23,14 +25,9 @@ class ePrf
     private $serious;
     private $discharge;
 
-    public function __construct($filepath)
+    public function __construct()
     {
-        $contents = file_get_contents($filepath);
-        // get rid of newlines
-        $contents = str_replace("\n", '', $contents);
-        $xml = preg_replace('/\*\*\*JPEG_SIGNATURE\*\*\*.*/', '', $contents);
-
-        $this->createFromXML($xml);
+        
     }
 
     public function getDateString()
@@ -58,9 +55,15 @@ class ePrf
         return $this->hour;
     }
 
-    private function createFromXML($xmlString)
+    public function createFromXML($xmlString)
     {
         $xml = simplexml_load_string($xmlString);
+
+        if ($xml === false) {
+            return false;
+        }
+
+        $this->id = (string)$xml->uuid;
 
         $this->date = $this->parseDate($xml->incident->time);
         $this->processDate();
@@ -70,6 +73,8 @@ class ePrf
         $this->treatment = new ePrfTreatment($xml->treatment);
         $this->serious = new ePrfSerious($xml->serious);
         $this->discharge = new ePrfDischarge($xml->discharge);
+
+        return true;
     }
 
     private function parseDate($prfDate)
