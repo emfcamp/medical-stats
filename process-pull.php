@@ -95,6 +95,7 @@ foreach ($prfList as $prfPaths) {
     // save PRF object in stats database
     if (!$debug) {
         $flatbase->insert()->in('prfs')->set([
+            'id'    => $prf->getId(),
             'date'  => $prf->getDateString(),
             'year'  => $prf->getYear(),
             'month' => $prf->getMonth(),

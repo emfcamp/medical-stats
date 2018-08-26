@@ -30,6 +30,11 @@ class ePrf
         
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getDateString()
     {
         return $this->date->toIso8601String();
