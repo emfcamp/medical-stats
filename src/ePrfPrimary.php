@@ -40,4 +40,104 @@ class ePrfPrimary extends ePrfSection
             return $this->checkYesNo($value);
         }
     }
+
+    /**
+     * Get presenting
+     *
+     * @return string
+     */
+    public function getPresenting()
+    {
+        return $this->presenting;
+    }
+
+    /**
+     * Get response
+     *
+     * @return string
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * Get capacity
+     *
+     * @return boolean
+     */
+    public function getCapacity()
+    {
+        return $this->capacity;
+    }
+
+    /**
+     * Get consent
+     *
+     * @return boolean
+     */
+    public function getConsent()
+    {
+        return $this->consent;
+    }
+
+    /**
+     * Get airway
+     *
+     * @return string
+     */
+    public function getAirway()
+    {
+        return $this->airway;
+    }
+
+    /**
+     * Get breathing
+     *
+     * @return string
+     */
+    public function getBreathing()
+    {
+        return $this->breathing;
+    }
+
+    /**
+     * Get circulation
+     *
+     * @return string
+     */
+    public function getCirculation()
+    {
+        return $this->circulation;
+    }
+
+    /**
+     * Get externalBleeding
+     *
+     * @return boolean
+     */
+    public function getExternalBleeding()
+    {
+        return $this->externalBleeding;
+    }
+
+    /**
+     * Get consciousnessLoss
+     *
+     * @return boolean
+     */
+    public function getConsciousnessLoss()
+    {
+        return $this->consciousnessLoss;
+    }
+
+    /**
+     * Get alcoholDrugsSuspected
+     *
+     * @return boolean
+     */
+    public function getAlcoholDrugsSuspected()
+    {
+        return $this->alcoholDrugsSuspected;
+    }
 }

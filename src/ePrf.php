@@ -19,15 +19,36 @@ class ePrf
     private $day;
     private $hour;
 
+    private $category;
+    private $severity;
+    private $riddor;
+
     private $primary;
     private $secondary;
     private $treatment;
     private $serious;
     private $discharge;
 
+    private $categories = [
+        'Welfare'   =>  [
+            'severities'    =>  ['Normal'],
+        ],
+        'First Aid'   =>  [
+            'severities'    =>  ['Minor','Serious'],
+        ],
+        'On Call'   =>  [
+            'severities'    =>  ['HCP', 'Ambulance'],
+        ],
+        'Off Site'   =>  [
+            'severities'    =>  ['Temporary', 'Permanent', 'Death'],
+        ],
+    ];
+
     public function __construct()
     {
-        
+        $this->category = false;
+        $this->severity = false;
+        $this->riddor = false;
     }
 
     public function getId()
@@ -38,6 +59,11 @@ class ePrf
     public function getDateString()
     {
         return $this->date->toIso8601String();
+    }
+
+    public function getDate()
+    {
+        return $this->date;
     }
 
     public function getYear()
@@ -60,6 +86,83 @@ class ePrf
         return $this->hour;
     }
 
+    public function getPossibleCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return ePRF
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+    
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set severity
+     *
+     * @param string $severity
+     *
+     * @return ePRF
+     */
+    public function setSeverity($severity)
+    {
+        $this->severity = $severity;
+    
+        return $this;
+    }
+    
+    /**
+     * Get severity
+     *
+     * @return string
+     */
+    public function getSeverity()
+    {
+        return $this->severity;
+    }
+
+    /**
+     * Set riddor
+     *
+     * @param boolean $riddor
+     *
+     * @return ePRF
+     */
+    public function setRiddor($riddor)
+    {
+        $this->riddor = $riddor;
+    
+        return $this;
+    }
+    
+    /**
+     * Get riddor
+     *
+     * @return boolean
+     */
+    public function getRiddor()
+    {
+        return $this->riddor;
+    }
+
     public function createFromXML($xmlString)
     {
         $xml = simplexml_load_string($xmlString);
@@ -80,6 +183,31 @@ class ePrf
         $this->discharge = new ePrfDischarge($xml->discharge);
 
         return true;
+    }
+
+    public function getPrimary()
+    {
+        return $this->primary;
+    }
+
+    public function getSecondary()
+    {
+        return $this->secondary;
+    }
+
+    public function getTreatment()
+    {
+        return $this->treatment;
+    }
+
+    public function getSerious()
+    {
+        return $this->serious;
+    }
+
+    public function getDischarge()
+    {
+        return $this->discharge;
     }
 
     private function parseDate($prfDate)

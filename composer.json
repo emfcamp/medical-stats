@@ -12,7 +12,9 @@
         "nesbot/carbon": "^1.33",
         "flatbase/flatbase": "^0.4.1",
         "symfony/console": "^4.1",
-        "symfony/var-dumper": "^4.1"
+        "symfony/var-dumper": "^4.1",
+        "duncan3dc/blade": "^4.2",
+        "delight-im/cookie": "^3.1"
     },
     "autoload": {
         "psr-4": {

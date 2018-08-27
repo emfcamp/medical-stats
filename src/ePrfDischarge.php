@@ -42,6 +42,156 @@ class ePrfDischarge extends ePrfSection
         $this->refused = $this->checkBox($xml->refused);
     }
 
+    /**
+     * Get walkingAided
+     *
+     * @return boolean
+     */
+    public function getWalkingAided()
+    {
+        return $this->walkingAided;
+    }
+
+    /**
+     * Get walkingUnaided
+     *
+     * @return boolean
+     */
+    public function getWalkingUnaided()
+    {
+        return $this->walkingUnaided;
+    }
+
+    /**
+     * Get ownTransport
+     *
+     * @return boolean
+     */
+    public function getOwnTransport()
+    {
+        return $this->ownTransport;
+    }
+
+    /**
+     * Get publicTransport
+     *
+     * @return boolean
+     */
+    public function getPublicTransport()
+    {
+        return $this->publicTransport;
+    }
+
+    /**
+     * Get ambulance
+     *
+     * @return boolean
+     */
+    public function getAmbulance()
+    {
+        return $this->ambulance;
+    }
+
+    /**
+     * Get taxi
+     *
+     * @return boolean
+     */
+    public function getTaxi()
+    {
+        return $this->taxi;
+    }
+
+    /**
+     * Get otherTransport
+     *
+     * @return string
+     */
+    public function getOtherTransport()
+    {
+        return $this->otherTransport;
+    }
+
+    /**
+     * Get treatmentCompleted
+     *
+     * @return boolean
+     */
+    public function getTreatmentCompleted()
+    {
+        return $this->treatmentCompleted;
+    }
+
+    /**
+     * Get advisedFurther
+     *
+     * @return boolean
+     */
+    public function getAdvisedFurther()
+    {
+        return $this->advisedFurther;
+    }
+
+    /**
+     * Get hospital
+     *
+     * @return boolean
+     */
+    public function getHospital()
+    {
+        return $this->hospital;
+    }
+
+    /**
+     * Get reviewLater
+     *
+     * @return boolean
+     */
+    public function getReviewLater()
+    {
+        return $this->reviewLater;
+    }
+
+    /**
+     * Get receivingCentre
+     *
+     * @return string
+     */
+    public function getReceivingCentre()
+    {
+        return $this->receivingCentre;
+    }
+
+    /**
+     * Get timeLeft
+     *
+     * @return Carbon
+     */
+    public function getTimeLeft()
+    {
+        return $this->timeLeft;
+    }
+
+    /**
+     * Get seenBy
+     *
+     * @return string
+     */
+    public function getSeenBy()
+    {
+        return $this->seenBy;
+    }
+
+    /**
+     * Get refused
+     *
+     * @return boolean
+     */
+    public function getRefused()
+    {
+        return $this->refused;
+    }
+
     // not ideal, copied from ePrf
     private function parseDate($prfDate)
     {

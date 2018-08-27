@@ -1,0 +1,23 @@
+.checkicon-yes.fa-check-circle {
+	color: #228B22;
+}
+
+.checkicon-yes.fa-times-circle {
+	color: #cf000f;
+}
+
+.checkicon-no.fa-check-circle {
+	color: #cf000f;
+}
+
+.checkicon-no.fa-times-circle {
+	color: #228B22;
+}
+
+.refused {
+	color: #cf000f;
+}
+
+.tight {
+	margin-bottom: 0px;
+}

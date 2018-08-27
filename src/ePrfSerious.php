@@ -26,6 +26,86 @@ class ePrfSerious extends ePrfSection
         $this->witnessedCollapse = $this->checkYesNo($xml->witnessed_collapse);
     }
 
+    /**
+     * Get ambulance
+     *
+     * @return boolean
+     */
+    public function getAmbulance()
+    {
+        return $this->ambulance;
+    }
+
+    /**
+     * Get ambulanceArrived
+     *
+     * @return Carbon
+     */
+    public function getAmbulanceArrived()
+    {
+        return $this->ambulanceArrived;
+    }
+
+    /**
+     * Get ambulanceDeparted
+     *
+     * @return Carbon
+     */
+    public function getAmbulanceDeparted()
+    {
+        return $this->ambulanceDeparted;
+    }
+
+    /**
+     * Get cpr
+     *
+     * @return boolean
+     */
+    public function getCpr()
+    {
+        return $this->cpr;
+    }
+
+    /**
+     * Get cprStarted
+     *
+     * @return Carbon
+     */
+    public function getCprStarted()
+    {
+        return $this->cprStarted;
+    }
+
+    /**
+     * Get defib
+     *
+     * @return boolean
+     */
+    public function getDefib()
+    {
+        return $this->defib;
+    }
+
+    /**
+     * Get defibNumShocks
+     *
+     * @return integer
+     */
+    public function getDefibNumShocks()
+    {
+        return $this->defibNumShocks;
+    }
+
+    /**
+     * Get witnessedCollapse
+     *
+     * @return boolean
+     */
+    public function getWitnessedCollapse()
+    {
+        return $this->witnessedCollapse;
+    }
+
     private function checkAmbulance($value)
     {
         // this field is broken - outputs ERROR when not used at all!

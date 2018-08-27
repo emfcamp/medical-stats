@@ -35,4 +35,124 @@ class ePrfSecondary extends ePrfSection
         $this->medicalHistory = $this->extractText($xml->medical_history);
         $this->complaintHistory = $this->extractText($xml->history_presenting_complaint);
     }
+
+    /**
+     * Get highBloodPressure
+     *
+     * @return boolean
+     */
+    public function getHighBloodPressure()
+    {
+        return $this->highBloodPressure;
+    }
+
+    /**
+     * Get stroke
+     *
+     * @return boolean
+     */
+    public function getStroke()
+    {
+        return $this->stroke;
+    }
+
+    /**
+     * Get seizures
+     *
+     * @return boolean
+     */
+    public function getSeizures()
+    {
+        return $this->seizures;
+    }
+
+    /**
+     * Get diabetes
+     *
+     * @return boolean
+     */
+    public function getDiabetes()
+    {
+        return $this->diabetes;
+    }
+
+    /**
+     * Get cardiac
+     *
+     * @return boolean
+     */
+    public function getCardiac()
+    {
+        return $this->cardiac;
+    }
+
+    /**
+     * Get asthma
+     *
+     * @return boolean
+     */
+    public function getAsthma()
+    {
+        return $this->asthma;
+    }
+
+    /**
+     * Get respiratory
+     *
+     * @return boolean
+     */
+    public function getRespiratory()
+    {
+        return $this->respiratory;
+    }
+
+    /**
+     * Get fast
+     *
+     * @return boolean
+     */
+    public function getFast()
+    {
+        return $this->fast;
+    }
+
+    /**
+     * Get allergies
+     *
+     * @return string
+     */
+    public function getAllergies()
+    {
+        return $this->allergies;
+    }
+
+    /**
+     * Get medications
+     *
+     * @return string
+     */
+    public function getMedications()
+    {
+        return $this->medications;
+    }
+
+    /**
+     * Get medicalHistory
+     *
+     * @return string
+     */
+    public function getMedicalHistory()
+    {
+        return $this->medicalHistory;
+    }
+
+    /**
+     * Get complaintHistory
+     *
+     * @return string
+     */
+    public function getComplaintHistory()
+    {
+        return $this->complaintHistory;
+    }
 }
