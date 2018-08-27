@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-	<h2 class="mt-0 mb-3">Seen by: {{ $discharge->getSeenBy() }}
-    @if ($discharge->getRefused === true)
-      <span class="refused"> (Refused Treatment)</span>
-    @endif
-  </h2>
-
+  <div class="row">
+    <div class="col-md-10">
+    	<h2 class="mt-0 mb-3">Seen by: {{ $discharge->getSeenBy() }}
+        @if ($discharge->getRefused === true)
+          <span class="refused"> (Refused Treatment)</span>
+        @endif
+      </h2>
+    </div>
+    <div class="col-md-2">
+      <p class="text-right"><strong>{{ $completed + 1 }} / {{ $total }}</strong></p>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-md-3">

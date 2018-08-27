@@ -84,6 +84,10 @@ if (count($prfs) > 0) {
         'treatment' => $currentPrf['prf']->getTreatment(),
         'serious'   => $currentPrf['prf']->getSerious(),
         'discharge' => $currentPrf['prf']->getDischarge(),
+
+        'completed' => count($done),
+        'remain'    => count($prfs),
+        'total'     => count($done) + count($prfs),
     ];
 
     $categoryLookup = $currentPrf['prf']->getPossibleCategories();
