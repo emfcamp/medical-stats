@@ -99,7 +99,7 @@ if (count($prfs) > 0) {
 
     echo $blade->render('categorise.prf', $with);
 } else {
-    // finished!
+    echo $blade->render('categorise.done');
 }
 
 
