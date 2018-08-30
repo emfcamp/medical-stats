@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-10">
     	<h2 class="mt-0 mb-3">Seen by: {{ $discharge->getSeenBy() }}
-        @if ($discharge->getRefused === true)
+        @if ($discharge->getRefused() === true)
           <span class="refused"> (Refused Treatment)</span>
         @endif
       </h2>

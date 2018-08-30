@@ -12,18 +12,21 @@ if (isset($_POST['path'])) {
     $path = checkPath($_POST['path']);
 
     if ($path) {
-        $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
+        $domain = ($_SERVER['HTTP_HOST'] != 'localhost:8000') ? $_SERVER['HTTP_HOST'] : false;
         Cookie::setcookie('path', $path, time()+60*60*24*365, '/', $domain, false);
     } else {
         echo $blade->render('error.error', ['msg' => 'Path not a valid Medical Event']);
         die;
     }
+} else {
+    if (Cookie::exists('path')) {
+        $path = Cookie::get('path');
+    } else {
+        echo $blade->render('error.error', ['msg' => 'No path given']);
+    }
 }
 
 // bootstrap the DB
-if (Cookie::exists('path')) {
-    $path = Cookie::get('path');
-}
 
 $storage = new Filesystem($path . 'stats-data/');
 $flatbase = new Flatbase($storage);

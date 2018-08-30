@@ -57,6 +57,10 @@ Open a command prompt to this repo and start a web server:
 php -S localhost:8000
 ```
 
-then open `http:\\localhost:8000` in a browser window.
+then open `http://localhost:8000/categories/` in a browser window.
 
 This will display the PRFs one by one and ask you to set: Category, Severity and RIDDOR. If there is only one severity for the category selected, this is automatically selected for you.
+
+### Running the Stats
+
+With your local server still running, visit `http://localhost:8000/stats` in a browser window

@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	$('.datepicker').datetimepicker();
 
-	Highcharts.chart('graph', chartOptions);
+	if (typeof chartOptions != "undefined") {
+		Highcharts.chart('graph', chartOptions);
+	}
 });
