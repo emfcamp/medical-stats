@@ -16,7 +16,15 @@ $startDate = Carbon::parse($_POST['eventStart']);
 $endDate = Carbon::parse($_POST['eventEnd']);
 $timestrings = [];
 
+// the last date we have a PRF for the current event for
+$passedTimestrings = [];
+
 $series = [];
+$counts = [];
+$totals = [
+    'current'   => 0,
+    'previous'  => 0,
+];
 
 // we need an entry for each date in the previous data set, even if it is 0
 // we will set the actual data later
@@ -53,6 +61,11 @@ for ($i = 0; $i < count($prfs); $i++) {
         continue;
     }
 
+    // is this the last one?
+    if (!in_array($timestring, $passedTimestrings)) {
+        $passedTimestrings[] = $timestring;
+    }
+
     $category = $prfs[$i]['prf']->getCategory();
 
     if (!isset($categories[$category])) {
@@ -64,7 +77,29 @@ for ($i = 0; $i < count($prfs); $i++) {
     }
 
     $categories[$category][$timestring]++;
+
+    if (!isset($counts[$category])) {
+        $counts[$category] = [
+            'current'   => 0,
+            'previous'  => 0,
+        ];
+    }
+
+    $counts[$category]['current']++;
+    $totals['current']++;
 }
+
+// fill out the passed timestrings
+$lastPassed = $passedTimestrings[count($passedTimestrings)-1];
+$passedTimestrings = [];
+$lookupStrings = array_keys($timestrings);
+for ($i = 0; $i < count($timestrings); $i++) {
+    $passedTimestrings[] = $lookupStrings[$i];
+    if ($lookupStrings[$i] == $lastPassed) {
+        break;
+    }
+}
+
 
 // loop over the previous event and get the data out
 $storage = new Filesystem($_POST['previousEventPath'] . 'stats-data/');
@@ -89,6 +124,20 @@ for ($i = 0; $i < count($prfs); $i++) {
     }
 
     $categories['previous'][$timestring]++;
+
+    $category = $prfs[$i]['prf']->getCategory();
+
+    if (!isset($counts[$category])) {
+        $counts[$category] = [
+            'current'   => 0,
+            'previous'  => 0,
+        ];
+    }
+
+    if (in_array($timestring, $passedTimestrings)) {
+        $counts[$category]['previous']++;
+        $totals['previous']++;
+    }
 }
 
 // transform the data into series
@@ -117,6 +166,11 @@ $with = [
     'start'     => $startDate->timestamp * 1000,
     'end'       => $endDate->timestamp * 1000,
     'series'    => $chartSeries,
+    'counts'    => $counts,
+    'totals'    => $totals,
+    'current'   => $_POST['currentEventLabel'],
+    'previous'  => $_POST['previousEventLabel'],
+    'lastDate'  => $passedTimestrings[count($passedTimestrings)-1],
 ];
 
 echo $blade->render('stats.main', $with);
